@@ -73,11 +73,11 @@ void CPlayerlistCore::SavePlayerlist()
 		write_json(F::Configs.m_sCorePath + "Players.json", tWrite);
 
 		F::PlayerUtils.m_bSave = false;
-		SDK::Output("Amalgam", "Saved playerlist", { 175, 150, 255 }, OUTPUT_CONSOLE | OUTPUT_DEBUG | OUTPUT_TOAST | OUTPUT_MENU);
+		SDK::Output("Korone", "Saved playerlist", { 175, 150, 255 }, OUTPUT_CONSOLE | OUTPUT_DEBUG | OUTPUT_TOAST | OUTPUT_MENU);
 	}
 	catch (...)
 	{
-		SDK::Output("Amalgam", "Save playerlist failed", { 175, 150, 255, 127 }, OUTPUT_CONSOLE | OUTPUT_DEBUG);
+		SDK::Output("Korone", "Save playerlist failed", { 175, 150, 255, 127 }, OUTPUT_CONSOLE | OUTPUT_DEBUG);
 	}
 }
 
@@ -161,10 +161,10 @@ void CPlayerlistCore::LoadPlayerlist()
 		}
 
 		F::PlayerUtils.m_bLoad = false;
-		SDK::Output("Amalgam", "Loaded playerlist", { 175, 150, 255 }, OUTPUT_CONSOLE | OUTPUT_DEBUG | OUTPUT_TOAST | OUTPUT_MENU);
+		SDK::Output("Korone", "Loaded playerlist", { 175, 150, 255 }, OUTPUT_CONSOLE | OUTPUT_DEBUG | OUTPUT_TOAST | OUTPUT_MENU);
 	}
 	catch (...)
 	{
-		SDK::Output("Amalgam", "Load playerlist failed", { 175, 150, 255, 127 }, OUTPUT_CONSOLE | OUTPUT_DEBUG);
+		SDK::Output("Korone", "Load playerlist failed", { 175, 150, 255, 127 }, OUTPUT_CONSOLE | OUTPUT_DEBUG);
 	}
 }

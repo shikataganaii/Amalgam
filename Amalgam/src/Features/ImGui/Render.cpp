@@ -99,7 +99,7 @@ void CRender::LoadFonts()
 	ImFontConfig fontConfig;
 	fontConfig.OversampleH = 2;
 	constexpr ImWchar fontRange[]{ 0x0020, 0x00FF, 0x0400, 0x044F, 0 }; // Basic Latin, Latin Supplement and Cyrillic
-#ifndef AMALGAM_CUSTOM_FONTS
+#ifndef KORONE_CUSTOM_FONTS
 	FontSmall = io.Fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\verdana.ttf)", H::Draw.Scale(11), &fontConfig, fontRange);
 	FontRegular = io.Fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\verdana.ttf)", H::Draw.Scale(13), &fontConfig, fontRange);
 	FontBold = io.Fonts->AddFontFromFileTTF(R"(C:\Windows\Fonts\verdanab.ttf)", H::Draw.Scale(13), &fontConfig, fontRange);
