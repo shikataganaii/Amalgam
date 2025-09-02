@@ -38,6 +38,7 @@ void CMisc::RunPost(CTFPlayer* pLocal, CUserCmd* pCmd, bool pSendPacket)
 	{
 		EdgeJump(pLocal, pCmd, true);
 		AutoPeek(pLocal, pCmd, true);
+		LongJump(pLocal, pCmd);
 		FastMovement(pLocal, pCmd);
 	}
 }
@@ -401,6 +402,22 @@ void CMisc::AutoPeek(CTFPlayer* pLocal, CUserCmd* pCmd, bool bPost)
 		bReturning = true;
 }
 
+void CMisc::LongJump(CTFPlayer* pLocal, CUserCmd* pCmd)
+{
+	if (!Vars::Misc::Movement::LongJump.Value)
+		return;
+
+	if (pLocal->movetype() == MOVETYPE_LADDER || pLocal->movetype() == MOVETYPE_NOCLIP)
+		return;
+
+	static int bLastTick = 0;
+
+	if (pLocal->m_fFlags() & FL_ONGROUND)
+		bLastTick = pCmd->tick_count;
+	else if (pCmd->tick_count - bLastTick <= 2)
+		pCmd->buttons |= IN_DUCK;
+}
+
 void CMisc::EdgeJump(CTFPlayer* pLocal, CUserCmd* pCmd, bool bPost)
 {
 	if (!Vars::Misc::Movement::EdgeJump.Value)
@@ -412,8 +429,6 @@ void CMisc::EdgeJump(CTFPlayer* pLocal, CUserCmd* pCmd, bool bPost)
 	else if (bStaticGround && !pLocal->m_hGroundEntity())
 		pCmd->buttons |= IN_JUMP;
 }
-
-
 
 void CMisc::Event(IGameEvent* pEvent, uint32_t uHash)
 {
