@@ -7,8 +7,10 @@ MAKE_SIGNATURE(CGCClientSharedObjectCache_FindTypeCache, "client.dll", "48 89 5C
 MAKE_SIGNATURE(CTFGCClientSystem_PingThink, "client.dll", "40 55 41 54 41 55 48 8D AC 24", 0x0);
 MAKE_SIGNATURE(CTFGCClientSystem_UpdateAssignedLobby, "client.dll", "40 55 53 41 54 41 56 41 57 48 8B EC", 0x0);
 MAKE_SIGNATURE(CTFGCClientSystem_GetParty, "client.dll", "48 83 EC ? 48 8B 89 ? ? ? ? 48 85 C9 74 ? BA ? ? ? ? E8 ? ? ? ? 48 85 C0 74 ? 8B 48 ? 85 C9 74 ? 48 8B 40 ? FF C9", 0x0);
+MAKE_SIGNATURE(CTFGCClientSystem_AbandonCurrentMatch, "client.dll", "48 83 EC ? 48 89 5C 24 ? 48 8B D9 48 8D 0D ? ? ? ? 48 89 74 24", 0x0);
 
 MAKE_SIGNATURE(CTFParty_SpewDebug, "client.dll", "4C 8B DC 41 56 48 81 EC ? ? ? ? 8B 05", 0x0);
+
 
 class CGCClientSharedObjectTypeCache
 {
@@ -127,6 +129,11 @@ public:
 			return nullptr;
 
 		return reinterpret_cast<CTFLobbyShared*>(uintptr_t(pLobby) - 8); // i assume from the dynamic_cast?
+	}
+	
+	inline void AbandonCurrentMatch()
+	{
+		S::CTFGCClientSystem_AbandonCurrentMatch.Call<void>(this);
 	}
 
 	inline void SetPendingPingRefresh(bool bValue)
