@@ -414,8 +414,15 @@ void CMisc::LongJump(CTFPlayer* pLocal, CUserCmd* pCmd)
 
 	if (pLocal->m_fFlags() & FL_ONGROUND)
 		bLastTick = pCmd->tick_count;
-	else if (pCmd->tick_count - bLastTick <= 2)
+	//* TODO: Make the timing changable */
+	else if (pCmd->tick_count - bLastTick <= 40)
+	{
+		if (!(pCmd->buttons & IN_DUCK))
+			SDK::Output("Korone", "HITT JUMP WOOF :3");
+
 		pCmd->buttons |= IN_DUCK;
+	}
+
 }
 
 void CMisc::EdgeJump(CTFPlayer* pLocal, CUserCmd* pCmd, bool bPost)
