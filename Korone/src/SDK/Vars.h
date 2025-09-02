@@ -725,6 +725,7 @@ namespace Vars
 			CVar(AutoF2Ignored, "Auto F2 ignored", false);
 			CVar(AutoF1Priority, "Auto F1 priority", false);
 			CVar(AcceptItemDrops, "Auto accept item drops", false);
+			CVar(AutoJoin, "Autojoin class", 0);
 		SUBNAMESPACE_END(Automation);
 
 		SUBNAMESPACE_BEGIN(Exploits)
