@@ -13,6 +13,7 @@
 #include "../Features/Visuals/Visuals.h"
 #include "../Features/Visuals/FakeAngle/FakeAngle.h"
 #include "../Features/Spectate/Spectate.h"
+#include "../Features/Misc/AutoJoin/AutoJoin.h"
 
 #define MATH_EPSILON (1.f / 16)
 #define PSILENT_EPSILON (1.f - MATH_EPSILON)
@@ -254,7 +255,7 @@ MAKE_HOOK(CHLClient_CreateMove, U::Memory.GetVirtual(I::Client, 21), void,
 	F::Spectate.CreateMove(pCmd);
 	F::Backtrack.CreateMove(pCmd);
 	F::Misc.RunPre(pLocal, pCmd);
-
+	F::AutoJoin.Run(pLocal);
 	F::EnginePrediction.Start(pLocal, pCmd);
 	F::Aimbot.Run(pLocal, pWeapon, pCmd);
 	F::CritHack.Run(pLocal, pWeapon, pCmd);

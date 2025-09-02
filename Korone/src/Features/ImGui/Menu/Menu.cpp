@@ -1010,7 +1010,8 @@ void CMenu::MenuMisc(int iTab)
 				}
 				if (Section("Automation"))
 				{
-					FDropdown(Vars::Misc::Automation::AntiBackstab); // pitch/fake _might_ slip up some auto backstabs
+					FDropdown(Vars::Misc::Automation::AntiBackstab, FDropdownEnum::Left); // pitch/fake _might_ slip up some auto backstabs
+					FDropdown(Vars::Misc::Automation::AutoJoin, { "Off", "Scout", "Soldier", "Pyro", "Demoman", "Heavy", "Engineer", "Medic", "Sniper", "Spy" }, { 0,1,3,7,4,6,9,5,2,8 }, FDropdownEnum::Right);
 					FToggle(Vars::Misc::Automation::AntiAFK, FToggleEnum::Left);
 					FToggle(Vars::Misc::Automation::AntiAutobalance, FToggleEnum::Right);
 					FToggle(Vars::Misc::Automation::TauntControl, FToggleEnum::Left);
