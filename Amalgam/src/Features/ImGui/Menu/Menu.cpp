@@ -10,6 +10,7 @@
 #include "../../Visuals/Visuals.h"
 #include "../../Misc/Misc.h"
 #include "../../Output/Output.h"
+#include "../../../Core/Core.h"
 
 void CMenu::DrawMenu()
 {
@@ -3016,6 +3017,8 @@ void CMenu::MenuSettings(int iTab)
 
 					EndPopup();
 				}
+				if (FButton("Unload", FButtonEnum::Left))
+					U::Core.m_bUnload = true;
 			}
 
 		} EndSection();
