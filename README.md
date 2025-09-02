@@ -3,7 +3,6 @@
   # Korone
 
   [![Stars](https://img.shields.io/github/stars/shikataganaii/Korone?style=for-the-badge&color=white&logo=github)](/../../stargazers)
-  [![Discord](https://img.shields.io/discord/1227898008373297223?style=for-the-badge&color=blue&labelColor=grey&label=Discord&logo=discord)](https://discord.gg/RbP9DfkUhe)
   [![Workflow status](https://img.shields.io/github/actions/workflow/status/shikataganaii/Korone/msbuild.yml?branch=master&style=for-the-badge)](/../../actions)
   [![Commit activity](https://img.shields.io/github/commit-activity/m/shikataganaii/Korone?style=for-the-badge)](/../../commits/)
   
