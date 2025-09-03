@@ -10,6 +10,7 @@
 #include "../../Features/Output/Output.h"
 #include "../../Features/Resolver/Resolver.h"
 #include "../../Features/Visuals/Visuals.h"
+#include "../../Features/Movement/Movement.h"
 
 bool CEventListener::Initialize()
 {

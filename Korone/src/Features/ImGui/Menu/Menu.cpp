@@ -70,12 +70,13 @@ void CMenu::DrawMenu()
 			PopStyleColor();
 		}
 
-		static int iTab = 0, iAimbotTab = 0, iVisualsTab = 0, iMiscTab = 0, iLogsTab = 0, iSettingsTab = 0;
+		static int iTab = 0, iAimbotTab = 0, iVisualsTab = 0, iMiscTab = 0, iMovementTab = 0, iLogsTab = 0, iSettingsTab = 0;
 		PushFont(F::Render.FontBold);
 		FTabs(
 			{
 				{ "AIMBOT", "GENERAL", "DRAW" },
 				{ "VISUALS", "ESP", "MISC##", "MENU" },
+				{ "MOVEMENT", "MAIN" },
 				{ "MISC", "MAIN", "HVH" },
 				{ "LOGS", "PLAYERLIST", "SETTINGS##", "OUTPUT" },
 				{ "SETTINGS", "CONFIG", "BINDS", "MATERIALS", "EXTRA" }
@@ -84,7 +85,7 @@ void CMenu::DrawMenu()
 			{ H::Draw.Scale(flSideSize - 16), H::Draw.Scale(36) },
 			{ H::Draw.Scale(8), H::Draw.Scale(8) + flOffset },
 			FTabsEnum::Vertical | FTabsEnum::HorizontalIcons | FTabsEnum::AlignLeft | FTabsEnum::BarLeft,
-			{ { ICON_MD_PERSON }, { ICON_MD_VISIBILITY }, { ICON_MD_ARTICLE }, { ICON_MD_IMPORT_CONTACTS }, { ICON_MD_SETTINGS } },
+			{ { ICON_MD_PERSON }, { ICON_MD_VISIBILITY }, {ICON_MD_DIRECTIONS_RUN}, { ICON_MD_ARTICLE }, { ICON_MD_IMPORT_CONTACTS }, { ICON_MD_SETTINGS } },
 			{ H::Draw.Scale(10), 0 }, {},
 			{}, { H::Draw.Scale(22), 0 }
 		);
@@ -113,9 +114,10 @@ void CMenu::DrawMenu()
 				{
 				case 0: MenuAimbot(iAimbotTab); break;
 				case 1: MenuVisuals(iVisualsTab); break;
-				case 2: MenuMisc(iMiscTab); break;
-				case 3: MenuLogs(iLogsTab); break;
-				case 4: MenuSettings(iSettingsTab); break;
+				case 2: MenuMovement(iMovementTab); break;
+				case 3: MenuMisc(iMiscTab); break;
+				case 4: MenuLogs(iLogsTab); break;
+				case 5: MenuSettings(iSettingsTab); break;
 				}
 			}
 			else
@@ -962,16 +964,16 @@ void CMenu::MenuVisuals(int iTab)
 	}
 }
 
-void CMenu::MenuMisc(int iTab)
+void CMenu::MenuMovement(int iTab)
 {
 	using namespace ImGui;
 
 	switch (iTab)
 	{
-	// Main
+		// Main
 	case 0:
 	{
-		if (BeginTable("MiscTable", 2))
+		if (BeginTable("MovementTable", 1))
 		{
 			/* Column 1 */
 			TableNextColumn();
@@ -1008,6 +1010,27 @@ void CMenu::MenuMisc(int iTab)
 						FSlider(Vars::Misc::Movement::ApplyAbove);
 					} EndSection();
 				}
+			} EndTable();
+		}
+		break;
+	}
+	}
+}
+
+void CMenu::MenuMisc(int iTab)
+{
+	using namespace ImGui;
+
+	switch (iTab)
+	{
+	// Main
+	case 0:
+	{
+		if (BeginTable("MiscTable", 2))
+		{
+			/* Column 1 */
+			TableNextColumn();
+			{
 				if (Section("Automation"))
 				{
 					FDropdown(Vars::Misc::Automation::AntiBackstab, FDropdownEnum::Left); // pitch/fake _might_ slip up some auto backstabs

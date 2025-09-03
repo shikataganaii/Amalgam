@@ -14,6 +14,7 @@
 #include "../Features/Visuals/FakeAngle/FakeAngle.h"
 #include "../Features/Spectate/Spectate.h"
 #include "../Features/Misc/AutoJoin/AutoJoin.h"
+#include "../Features/Movement/Movement.h"
 
 #define MATH_EPSILON (1.f / 16)
 #define PSILENT_EPSILON (1.f - MATH_EPSILON)
@@ -254,7 +255,8 @@ MAKE_HOOK(CHLClient_CreateMove, U::Memory.GetVirtual(I::Client, 21), void,
 	UpdateInfo(pLocal, pWeapon, pCmd);
 	F::Spectate.CreateMove(pCmd);
 	F::Backtrack.CreateMove(pCmd);
-	F::Misc.RunPre(pLocal, pCmd);
+	F::Misc.Run(pLocal, pCmd);
+	F::Movement.RunPre(pLocal, pCmd);
 	F::AutoJoin.Run(pLocal);
 	F::EnginePrediction.Start(pLocal, pCmd);
 	F::Aimbot.Run(pLocal, pWeapon, pCmd);
@@ -263,7 +265,7 @@ MAKE_HOOK(CHLClient_CreateMove, U::Memory.GetVirtual(I::Client, 21), void,
 	F::Resolver.CreateMove(pLocal);
 	F::EnginePrediction.End(pLocal, pCmd);
 
-	F::Misc.RunPost(pLocal, pCmd, *pSendPacket);
+	F::Movement.RunPost(pLocal, pCmd, *pSendPacket);
 	F::PacketManip.Run(pLocal, pWeapon, pCmd, pSendPacket);
 	F::Visuals.CreateMove(pLocal, pWeapon);
 	F::Ticks.CreateMove(pLocal, pCmd, pSendPacket);
