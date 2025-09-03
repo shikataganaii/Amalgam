@@ -97,8 +97,13 @@ void CCore::Load()
 	U::ConVars.Initialize();
 
 	F::Configs.LoadConfig(F::Configs.m_sCurrentConfig, false);
-
+	/* 
+		If we apply SegoeUI font the scaling gets all messed up.
+		Let's reload the font and that'll fix the scaling, we gotta fix this eventually though
+	*/
+	H::Fonts.Reload(Vars::Menu::Scale[DEFAULT_BIND]);
 	SDK::Output("Korone", "Loaded", { 175, 150, 255 }, OUTPUT_CONSOLE | OUTPUT_DEBUG | OUTPUT_TOAST | OUTPUT_MENU);
+	
 }
 
 void CCore::Loop()
