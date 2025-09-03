@@ -180,14 +180,15 @@ namespace Vars
 		CVar(MenuShowsBinds, "Menu shows binds", false, NOBIND);
 
 		CVarEnum(Indicators, "Indicators", 0b00000, VISUAL | DROPDOWN_MULTI, nullptr,
-			VA_LIST("Ticks", "Crit hack", "Spectators", "Ping", "Conditions", "Seed prediction"),
-			Ticks = 1 << 0, CritHack = 1 << 1, Spectators = 1 << 2, Ping = 1 << 3, Conditions = 1 << 4, SeedPrediction = 1 << 5);
+			VA_LIST("Ticks", "Crit hack", "Spectators", "Ping", "Velocity", "Conditions", "Seed prediction"),
+			Ticks = 1 << 0, CritHack = 1 << 1, Spectators = 1 << 2, Ping = 1 << 3, Velocity = 1 << 4, Conditions = 1 << 5, SeedPrediction = 1 << 6);
 
 		CVar(BindsDisplay, "Binds display", DragBox_t(100, 100), VISUAL | NOBIND);
 		CVar(TicksDisplay, "Ticks display", DragBox_t(), VISUAL | NOBIND);
 		CVar(CritsDisplay, "Crits display", DragBox_t(), VISUAL | NOBIND);
 		CVar(SpectatorsDisplay, "Spectators display", DragBox_t(), VISUAL | NOBIND);
 		CVar(PingDisplay, "Ping display", DragBox_t(), VISUAL | NOBIND);
+		CVar(VelocityDisplay, "Velocity display", DragBox_t(), VISUAL | NOBIND);
 		CVar(ConditionsDisplay, "Conditions display", DragBox_t(), VISUAL | NOBIND);
 		CVar(SeedPredictionDisplay, "Seed prediction display", DragBox_t(), VISUAL | NOBIND);
 
