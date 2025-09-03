@@ -63,10 +63,9 @@ void CMenu::DrawMenu()
 		{
 			flOffset = H::Draw.Scale(36);
 			pDrawList->AddRectFilled({ vDrawPos.x, vDrawPos.y + H::Draw.Scale(35) }, { vDrawPos.x + H::Draw.Scale(flSideSize - 1), vDrawPos.y + H::Draw.Scale(36) }, F::Render.Background2);
-			
 			SetCursorPos({ H::Draw.Scale(12), H::Draw.Scale(11) });
 			PushStyleColor(ImGuiCol_Text, F::Render.Accent.Value);
-			FText(TruncateText(Vars::Menu::CheatTitle.Value, H::Draw.Scale(flSideSize - 28), F::Render.FontBold).c_str(), 0, F::Render.FontBold);
+			FText(TruncateText(Vars::Menu::CheatTitle.Value, H::Draw.Scale(flSideSize - 28), F::Render.FontTitle).c_str(), FTextEnum::None, F::Render.FontTitle);
 			PopStyleColor();
 		}
 
