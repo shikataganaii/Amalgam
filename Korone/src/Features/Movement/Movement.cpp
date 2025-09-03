@@ -33,6 +33,39 @@ void CMovement::RunPost(CTFPlayer* pLocal, CUserCmd* pCmd, bool pSendPacket)
 	}
 }
 
+void CMovement::Draw(CTFPlayer* pLocal)
+{
+	if (!(Vars::Menu::Indicators.Value & Vars::Menu::IndicatorsEnum::Velocity) || !pLocal->IsAlive())
+		return;
+	int x = Vars::Menu::VelocityDisplay.Value.x;
+	int y = Vars::Menu::VelocityDisplay.Value.y + 8;
+	const auto& fFont = H::Fonts.GetFont(FONT_INDICATORS);
+	const int nTall = fFont.m_nTall + H::Draw.Scale(1);
+
+	EAlign align = ALIGN_TOP;
+	if (x <= 100 + H::Draw.Scale(50, Scale_Round))
+	{
+		x -= H::Draw.Scale(42, Scale_Round);
+		align = ALIGN_TOPLEFT;
+	}
+	else if (x >= H::Draw.m_nScreenW - 100 - H::Draw.Scale(50, Scale_Round))
+	{
+		x += H::Draw.Scale(42, Scale_Round);
+		align = ALIGN_TOPRIGHT;
+	}
+	static float bOldVelocity = 0;
+	float currentVelocity = pLocal->GetAbsVelocity().Length();
+	if (!(pLocal->m_fFlags() & FL_ONGROUND))
+	{
+		H::Draw.StringOutlined(fFont, x, y += nTall, Vars::Menu::Theme::Active.Value, Vars::Menu::Theme::Background.Value, align, std::format("{:.0f} ({:.0f})", currentVelocity, bOldVelocity).c_str());
+	}
+	else
+	{
+		bOldVelocity = currentVelocity;
+		H::Draw.StringOutlined(fFont, x, y += nTall, Vars::Menu::Theme::Active.Value, Vars::Menu::Theme::Background.Value, align, std::format("{:.0f}", currentVelocity).c_str());
+	}
+}
+
 void CMovement::AutoJump(CTFPlayer* pLocal, CUserCmd* pCmd)
 {
 	if (!Vars::Misc::Movement::Bunnyhop.Value)

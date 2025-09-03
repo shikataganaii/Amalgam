@@ -22,7 +22,7 @@ private:
 public:
 	void RunPre(CTFPlayer* pLocal, CUserCmd* pCmd);
 	void RunPost(CTFPlayer* pLocal, CUserCmd* pCmd, bool pSendPacket);
-
+	void Draw(CTFPlayer* pLocal);
 	void Event(IGameEvent* pEvent, uint32_t uNameHash);
 
 	void PingReducer();
