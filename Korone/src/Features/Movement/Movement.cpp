@@ -61,7 +61,7 @@ void CMovement::Draw(CTFPlayer* pLocal)
 	}
 	else
 	{
-		bOldVelocity = currentVelocity;
+		fOldVelocity = fCurrentVelocity;
 		H::Draw.StringOutlined(fFont, x, y += nTall, Vars::Menu::Theme::Active.Value, Vars::Menu::Theme::Background.Value, align, std::format("{:.0f}", currentVelocity).c_str());
 	}
 }
