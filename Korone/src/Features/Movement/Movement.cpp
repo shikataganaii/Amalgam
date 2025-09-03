@@ -57,12 +57,12 @@ void CMovement::Draw(CTFPlayer* pLocal)
 	float fCurrentVelocity = pLocal->GetAbsVelocity().Length();
 	if (!(pLocal->m_fFlags() & FL_ONGROUND))
 	{
-		H::Draw.StringOutlined(fFont, x, y += nTall, Vars::Menu::Theme::Active.Value, Vars::Menu::Theme::Background.Value, align, std::format("{:.0f} ({:.0f})", currentVelocity, bOldVelocity).c_str());
+		H::Draw.StringOutlined(fFont, x, y += nTall, Vars::Menu::Theme::Active.Value, Vars::Menu::Theme::Background.Value, align, std::format("{:.0f} ({:.0f})", fCurrentVelocity, fOldVelocity).c_str());
 	}
 	else
 	{
 		fOldVelocity = fCurrentVelocity;
-		H::Draw.StringOutlined(fFont, x, y += nTall, Vars::Menu::Theme::Active.Value, Vars::Menu::Theme::Background.Value, align, std::format("{:.0f}", currentVelocity).c_str());
+		H::Draw.StringOutlined(fFont, x, y += nTall, Vars::Menu::Theme::Active.Value, Vars::Menu::Theme::Background.Value, align, std::format("{:.0f}", fCurrentVelocity).c_str());
 	}
 }
 
